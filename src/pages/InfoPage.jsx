@@ -92,7 +92,7 @@ function InfoPage() {
       <HomeBar />
       {showWelcomeModal && <WelcomeModal onClose={handleCloseModal} />}
       {showProjectsPopup && <PopupModal popupImage="/projects_popup.png" onClose={handleCloseProjectsPopup} />}
-      {showInternshipPopup && <PopupModal popupImage="/internship_popup.jpg" onClose={handleCloseInternshipPopup} />}
+      {showInternshipPopup && <PopupModal popupImage="/internship_popup.png" onClose={handleCloseInternshipPopup} />}
     </div>
   )
 }
