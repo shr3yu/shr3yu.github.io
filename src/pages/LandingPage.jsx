@@ -10,7 +10,7 @@ function LandingPage() {
   const message = 'Click computer to power on'
   
   const handleComputerClick = () => {
-    navigate('/info')
+    navigate('/bootingup')
   }
   
   useEffect(() => {
