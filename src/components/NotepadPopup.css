@@ -10,8 +10,8 @@
   height: auto;
   display: block;
   pointer-events: none;
-  max-width: 500px;
-  max-height: 400px;
+  max-width: 600px;
+  max-height: 500px;
   position: relative;
 }
 
@@ -24,7 +24,7 @@
   background: transparent;
   display: flex;
   align-items: flex-start;
-  padding-left: 24px;
+  padding-left: 26px;
   padding-top: 6px;
   cursor: move;
   z-index: 10;
@@ -34,18 +34,19 @@
 .notepad-title {
   font-family:'Tahoma', sans-serif;
   font-size: 11px;
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: bold;
 }
 
 .notepad-content {
   position: absolute;
-  top: 35px;
+  top: 54px;
   left: 2px;
-  right: 18px;
+  right: 2px;
   bottom: 18px;
   background: transparent;
-  padding: 8px;
+  padding: 9px;
+  padding-right: 0;
   border: none;
   resize: none;
   outline: none;
@@ -57,6 +58,57 @@
   word-wrap: break-word;
   z-index: 5;
   overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.notepad-content-display {
+  white-space: normal;
+  cursor: text;
+  padding-right: 9px;
+}
+
+.notepad-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.notepad-content-display strong {
+  font-weight: bold;
+}
+
+.notepad-content-display em {
+  font-style: italic;
+}
+
+.notepad-content-display code {
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace;
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.notepad-content-display ul,
+.notepad-content-display ol {
+  margin: 0;
+  padding-left: 20px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.notepad-content-display li {
+  margin: 2px 0;
+  line-height: 1.3;
+}
+
+.notepad-content-display br {
+  line-height: 1.2;
+}
+
+.notepad-content-display .notepad-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 8px 0;
 }
 
 .notepad-close-x {

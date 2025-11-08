@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 30px;
+  height: 38px;
   background: #c0c0c0;
   border-top: 1px solid #ffffff;
   display: flex;
@@ -12,8 +12,8 @@
 }
 
 .start-button {
-  height: 24px;
-  margin: 3px 2px;
+  height: 30px;
+  margin: 4px 2px;
   padding: 0 12px;
   background: #c0c0c0;
   border: 2px outset #c0c0c0;
@@ -28,7 +28,8 @@
   color: #000;
 }
 
-.start-button:active {
+.start-button:active,
+.start-button.active {
   border: 2px inset #c0c0c0;
 }
 
@@ -37,7 +38,7 @@
 }
 
 .windows-logo {
-  width: 30 px;
+  width: 30px;
   height: 30px;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
@@ -54,11 +55,67 @@
   flex: 1;
   height: 100%;
   background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 2px;
+  overflow: hidden;
+}
+
+.taskbar-button {
+  height: 30px;
+  margin: 4px 0;
+  padding: 0 8px;
+  background: #c0c0c0;
+  border: 2px outset #c0c0c0;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: url('/mouse.png'), pointer;
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  font-size: 11px;
+  color: #000;
+  min-width: 60px;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.taskbar-button.active {
+  background: #d4d0c8;
+  border: 2px inset #c0c0c0;
+}
+
+.taskbar-button:hover:not(.active) {
+  background: #d4d0c8;
+}
+
+.taskbar-icon {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  flex-shrink: 0;
+}
+
+.taskbar-text {
+  font-size: 11px;
+  color: #000;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskbar-text.active {
+  font-weight: bold;
 }
 
 .system-tray {
-  height: 24px;
-  margin: 3px 2px;
+  height: 30px;
+  margin: 4px 2px;
   padding: 0 8px;
   background: #c0c0c0;
   border-top: 1px solid #000;

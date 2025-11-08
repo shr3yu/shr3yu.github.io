@@ -1,0 +1,43 @@
+.shuttingdown-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.shutdown-console {
+  font-family: 'Courier New', 'Courier', monospace;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.6;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
+}
+
+.shutdown-line {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.shutdown-cursor {
+  color: #ffffff;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+

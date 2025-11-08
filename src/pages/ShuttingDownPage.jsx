@@ -1,34 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './BootingupPage.css'
+import './ShuttingDownPage.css'
 
-const bootMessages = [
-  'Starting Windows 98...',
+const shutdownMessages = [
+  'C:\\WINDOWS>exit',
   '',
-  'HIMEM is testing extended memory...done.',
+  'Shutting down Windows...',
   '',
-  'C:\\>SETUP',
   '',
-  'Loading Windows 98...',
+  'Please wait while your computer shuts down.',
   '',
-  'Initializing device drivers...',
   '',
-  'MS-DOS Compatibility mode active.',
+  'Saving your settings...',
   '',
-  'The diagnostic tools were successfully loaded to drive D.',
+  'Closing network connections...',
   '',
-  'MSCDEX Version 2.25',
-  'Copyright (C) Microsoft Corp. 1986-1995. All rights reserved.',
+  'Writing system cache to disk...',
   '',
-  'Drive E: = Driver MSCD001 unit 0',
   '',
-  'Preparing to start your computer.',
-  'This may take a few minutes. Please wait...',
+  'Windows is shutting down...',
   '',
-  'C:\\>WIN'
+  '',
+  'It is now safe to turn off your computer.'
 ]
 
-function BootingupPage() {
+function ShuttingDownPage() {
   const [displayedLines, setDisplayedLines] = useState([])
   const [showCursor, setShowCursor] = useState(true)
   const navigate = useNavigate()
@@ -36,22 +32,22 @@ function BootingupPage() {
   useEffect(() => {
     // Calculate delay per line to complete in ~4 seconds
     const totalTime = 4000 // 4 seconds
-    const delayPerLine = Math.floor(totalTime / bootMessages.length)
+    const delayPerLine = Math.floor(totalTime / shutdownMessages.length)
 
     let currentIndex = 0
     let intervalId = null
 
     const showNextLine = () => {
-      if (currentIndex < bootMessages.length) {
-        setDisplayedLines(prev => [...prev, bootMessages[currentIndex]])
+      if (currentIndex < shutdownMessages.length) {
+        setDisplayedLines(prev => [...prev, shutdownMessages[currentIndex]])
         currentIndex++
       } else {
         if (intervalId) {
           clearInterval(intervalId)
         }
-        // Wait a bit after last line, then navigate to info page
+        // Wait a bit after last line, then navigate to landing page
         setTimeout(() => {
-          navigate('/info')
+          navigate('/')
         }, 500)
       }
     }
@@ -79,18 +75,18 @@ function BootingupPage() {
   }, [])
 
   return (
-    <div className="bootingup-container">
-      <div className="boot-console">
+    <div className="shuttingdown-container">
+      <div className="shutdown-console">
         {displayedLines.map((line, index) => (
-          <div key={index} className="boot-line">
+          <div key={index} className="shutdown-line">
             {line || '\u00A0'}
           </div>
         ))}
-        {showCursor && <span className="boot-cursor">_</span>}
+        {showCursor && <span className="shutdown-cursor">_</span>}
       </div>
     </div>
   )
 }
 
-export default BootingupPage
+export default ShuttingDownPage
 
