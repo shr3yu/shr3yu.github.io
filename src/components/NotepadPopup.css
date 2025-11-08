@@ -1,0 +1,88 @@
+.notepad-popup {
+  position: fixed;
+  z-index: 2500;
+  cursor: default;
+  display: inline-block;
+}
+
+.notepad-background {
+  width: auto;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  max-width: 500px;
+  max-height: 400px;
+  position: relative;
+}
+
+.notepad-title-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: transparent;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 24px;
+  padding-top: 6px;
+  cursor: move;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.notepad-title {
+  font-family:'Tahoma', sans-serif;
+  font-size: 11px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.notepad-content {
+  position: absolute;
+  top: 35px;
+  left: 2px;
+  right: 18px;
+  bottom: 18px;
+  background: transparent;
+  padding: 8px;
+  border: none;
+  resize: none;
+  outline: none;
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace;
+  font-size: 12px;
+  color: #000000;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  z-index: 5;
+  overflow: auto;
+}
+
+.notepad-close-x {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: url('/mouse.png'), pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  line-height: 1;
+  pointer-events: auto;
+}
+
+.notepad-close-x:active {
+  background: transparent;
+}
+
+.notepad-close-x:hover {
+  background: transparent;
+}
+
