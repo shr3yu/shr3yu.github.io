@@ -8,6 +8,7 @@ import './InfoPage.css'
 function InfoPage() {
   const [showWelcomeModal, setShowWelcomeModal] = useState(true)
   const [showProjectsPopup, setShowProjectsPopup] = useState(false)
+  const [showInternshipPopup, setShowInternshipPopup] = useState(false)
 
   useEffect(() => {
     // Set custom cursor on body and html when component mounts
@@ -42,6 +43,14 @@ function InfoPage() {
     window.open('/resume_2B.pdf', '_blank')
   }
 
+  const handleInternshipClick = () => {
+    setShowInternshipPopup(true)
+  }
+
+  const handleCloseInternshipPopup = () => {
+    setShowInternshipPopup(false)
+  }
+
   return (
     <div className="info-page-container" style={{
       backgroundColor: '#008081',
@@ -73,11 +82,17 @@ function InfoPage() {
           title="Resume"
           onIconClick={handleResumeClick}
         />
+        <WindowsIcon 
+          icon="/internship.png"
+          title="Internships"
+          onIconClick={handleInternshipClick}
+        />
       </div>
 
       <HomeBar />
       {showWelcomeModal && <WelcomeModal onClose={handleCloseModal} />}
       {showProjectsPopup && <PopupModal popupImage="/projects_popup.png" onClose={handleCloseProjectsPopup} />}
+      {showInternshipPopup && <PopupModal popupImage="/internship_popup.jpg" onClose={handleCloseInternshipPopup} />}
     </div>
   )
 }
