@@ -51,8 +51,8 @@ function LandingPage() {
     }}> 
       <div className="title-container" style={{
         position: 'absolute',
-        top: '7%',
-        left: '5%',
+        top: '10%',
+        left: '8%',
         zIndex: 10
       }}>
         <div className="title-201" style={{
@@ -102,7 +102,7 @@ function LandingPage() {
         style={{
           position: 'absolute',
           right: '10%',
-          top: '8%',
+          top: '15%',
           zIndex: 5
         }}
       >

@@ -1,11 +1,10 @@
 /* Responsive styles for Landing Page */
 
-/* Large screens (desktop) - computer at bottom right */
+/* Large screens (desktop) - computer positioned on right */
 @media (min-width: 1025px) {
   .computer-container {
-    top: auto !important;
-    bottom: 5% !important;
-    right: 5% !important;
+    top: 15% !important;
+    right: 10% !important;
   }
 }
 
