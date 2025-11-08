@@ -1,0 +1,60 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.popup-window {
+  position: relative;
+  width: auto;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
+.popup-background {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 800px;
+}
+
+.popup-close-x {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: transparent;
+  cursor: url('/mouse.png'), pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  line-height: 1;
+}
+
+.popup-close-x:active {
+  background: transparent;
+}
+
+.popup-close-x:hover {
+  background: transparent;
+}
+

@@ -1,0 +1,19 @@
+.info-page-container {
+  font-family: 'Tahoma', 'Geneva', sans-serif;
+  font-size: 13.3333px;
+  color: #000000;
+  cursor: url('/mouse.png') 0 0, auto !important;
+}
+
+.info-page-container * {
+  font-family: 'Tahoma', 'Geneva', sans-serif;
+  font-size: 10px;
+  color: #000000;
+  cursor: url('/mouse.png') 0 0, auto !important;
+}
+
+html,
+body {
+  cursor: url('/mouse.png') 0 0, auto !important;
+}
+

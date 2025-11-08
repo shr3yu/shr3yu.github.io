@@ -1,0 +1,104 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-window {
+  position: relative;
+  width: auto;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
+.modal-background {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 800px;
+}
+
+.modal-content {
+  position: absolute;
+  top: 22px;
+  left: 37%;
+  right: 0;
+  bottom: 0;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  background: transparent;
+}
+
+.modal-text {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 10px;
+  color: #000;
+  line-height: 1;
+  margin: 100px 0 20px 0;
+}
+
+.modal-close-button {
+  align-self: flex-end;
+  height: 24px;
+  padding: 4px 12px;
+  background: #d4d0c8;
+  border: none;
+  border-radius: 0;
+  font-family: 'Tahoma', 'Geneva', sans-serif;
+  font-size: 10pt;
+  font-weight: normal;
+  color: #000000;
+  cursor: url('/mouse.png'), pointer;
+  margin-top: auto;
+  vertical-align: middle;
+  box-shadow: 
+    inset -1px -1px 0px 0px #404040,
+    inset 1px 1px 0px 0px #ffffff,
+    inset -2px -2px 0px 0px #808080,
+    inset 2px 2px 0px 0px #eceae7;
+}
+
+.modal-close-button:active {
+  box-shadow: 
+    inset 1px 1px 0px 0px #404040,
+    inset -1px -1px 0px 0px #ffffff,
+    inset 2px 2px 0px 0px #808080,
+    inset -2px -2px 0px 0px #eceae7;
+}
+
+.modal-close-button:hover {
+  background: #d4d0c8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-window {
+    width: 90vw;
+  }
+  
+  .modal-content {
+    padding: 15px;
+    min-height: 150px;
+  }
+  
+  .modal-welcome-title {
+    font-size: 16px;
+  }
+  
+  .modal-text {
+    font-size: 10px;
+  }
+}
+
