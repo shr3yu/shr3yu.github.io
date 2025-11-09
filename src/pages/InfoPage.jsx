@@ -9,8 +9,8 @@ import './InfoPage.css'
 
 // Configuration: List of markdown files in each folder
 // Add new markdown files here as you create them
-const PROJECTS_FILES = ['Project1', 'Project2']
-const EXPERIENCE_FILES = ['Internship1', 'Internship2']
+const PROJECTS_FILES = ['Robo-Car', 'Charge-Simulation', 'MNIST']
+const EXPERIENCE_FILES = ['Ford', 'Genesys', 'PillarToPost']
 
 function InfoPage() {
   const [showWelcomeModal, setShowWelcomeModal] = useState(true)
@@ -150,6 +150,18 @@ function InfoPage() {
     setNextNotepadId(newId + 1)
   }
 
+  const handleContactClick = () => {
+    window.location.href = 'mailto:shreyapawarmamidi@gmail.com'
+  }
+
+  const handleGithubClick = () => {
+    window.open('https://github.com/shr3yu', '_blank')
+  }
+
+  const handleLinkedInClick = () => {
+    window.open('https://www.linkedin.com/in/shreya-pawar-mamidi-b27672283', '_blank')
+  }
+
   const handleDocumentClick = async (doc) => {
     const newId = nextNotepadId
     const position = {
@@ -208,33 +220,53 @@ function InfoPage() {
       overflow: 'auto',
       cursor: 'url(/mouse.png), auto'
     }}>
-      <div className="desktop-icons" style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
+      <div className="desktop-icons-container" style={{
         padding: '20px',
-        gap: '10px'
+        gap: '40px'
       }}>
-        <WindowsIcon 
-          icon="/projects.png"
-          title="Projects"
-          onIconClick={handleProjectsClick}
-        />
-        <WindowsIcon 
-          icon="/resume.png"
-          title="Resume"
-          onIconClick={handleResumeClick}
-        />
-        <WindowsIcon 
-          icon="/internship.png"
-          title="Internships"
-          onIconClick={handleInternshipClick}
-        />
-        <WindowsIcon 
-          icon="/notepad.png"
-          title="Notepad"
-          onIconClick={handleNotepadClick}
-        />
+        <div className="desktop-icons" style={{
+          gap: '20px'
+        }}>
+          <WindowsIcon 
+            icon="/projects.png"
+            title="Projects"
+            onIconClick={handleProjectsClick}
+          />
+          <WindowsIcon 
+            icon="/resume.png"
+            title="Resume"
+            onIconClick={handleResumeClick}
+          />
+          <WindowsIcon 
+            icon="/internship.png"
+            title="Internships"
+            onIconClick={handleInternshipClick}
+          />
+          <WindowsIcon 
+            icon="/notepad.png"
+            title="Notepad"
+            onIconClick={handleNotepadClick}
+          />
+          <WindowsIcon 
+            icon="/email.png"
+            title="Contact"
+            onIconClick={handleContactClick}
+          />
+        </div>
+        <div className="desktop-icons" style={{
+          gap: '20px'
+        }}>
+          <WindowsIcon 
+            icon="/github.png"
+            title="Github"
+            onIconClick={handleGithubClick}
+          />
+          <WindowsIcon 
+            icon="/linkedin.png"
+            title="LinkedIn"
+            onIconClick={handleLinkedInClick}
+          />
+        </div>
       </div>
 
       <HomeBar 

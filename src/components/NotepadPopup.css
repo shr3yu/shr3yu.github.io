@@ -105,7 +105,8 @@
 }
 
 .notepad-content-display .notepad-image {
-  max-width: 100%;
+  max-width: 50%;
+  width: 50%;
   height: auto;
   display: block;
   margin: 8px 0;
