@@ -4,6 +4,7 @@ import WelcomeModal from '../components/WelcomeModal'
 import WindowsIcon from '../components/WindowsIcon'
 import PopupModal from '../components/PopupModal'
 import NotepadPopup from '../components/NotepadPopup'
+import FullscreenNotepad from '../components/FullscreenNotepad'
 import { loadMarkdownFile, getDocumentName } from '../utils/markdownLoader'
 import './InfoPage.css'
 
@@ -23,6 +24,7 @@ function InfoPage() {
   const [activeWindowId, setActiveWindowId] = useState(null)
   const [projectsPopupPosition, setProjectsPopupPosition] = useState(null)
   const [internshipsPopupPosition, setInternshipsPopupPosition] = useState(null)
+  const [fullscreenNotepad, setFullscreenNotepad] = useState(null)
 
   useEffect(() => {
     // Set custom cursor on body and html when component mounts
@@ -194,6 +196,98 @@ function InfoPage() {
     setActiveWindowId(windowId)
   }
 
+  const handleNotepadExpand = (notepadId) => {
+    const notepad = notepads.find(n => n.id === notepadId)
+    if (notepad) {
+      setFullscreenNotepad({
+        id: notepadId,
+        title: notepad.title,
+        content: notepad.content,
+        isEditable: notepad.title === 'Untitled - Notepad'
+      })
+    }
+  }
+
+  const handleFullscreenClose = () => {
+    setFullscreenNotepad(null)
+  }
+
+  const handleFullscreenMinimize = () => {
+    setFullscreenNotepad(null)
+  }
+
+  const handleFullscreenContentChange = (newContent) => {
+    if (fullscreenNotepad) {
+      const notepadId = fullscreenNotepad.id
+      // Update the notepad content in the notepads array
+      setNotepads(prevNotepads => 
+        prevNotepads.map(n => 
+          n.id === notepadId 
+            ? { ...n, content: newContent }
+            : n
+        )
+      )
+      // Update the fullscreen notepad state
+      setFullscreenNotepad(prev => ({
+        ...prev,
+        content: newContent
+      }))
+    }
+  }
+
+  // Helper function to format icon filename to title
+  const formatIconTitle = (filename) => {
+    return filename
+      .replace(/\.png$/i, '')
+      .replace(/_/g, ' ')
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ')
+  }
+
+  // All desktop icons combined - existing functional icons first, then decorative icons
+  const allDesktopIcons = [
+    // Column 1 - Main functional icons
+    { id: 'projects', icon: '/projects.png', title: 'Projects', onIconClick: handleProjectsClick },
+    { id: 'resume', icon: '/resume.png', title: 'Resume', onIconClick: handleResumeClick },
+    { id: 'internships', icon: '/internship.png', title: 'Internships', onIconClick: handleInternshipClick },
+    { id: 'notepad', icon: '/notepad.png', title: 'Notepad', onIconClick: handleNotepadClick },
+    { id: 'contact', icon: '/email.png', title: 'Contact', onIconClick: handleContactClick },
+    { id: 'music_player', icon: '/Music_Player.png', title: formatIconTitle('Music_Player.png'), onIconClick: () => {} },
+    // Column 2 - Social links
+    { id: 'github', icon: '/github.png', title: 'Github', onIconClick: handleGithubClick },
+    { id: 'linkedin', icon: '/linkedin.png', title: 'LinkedIn', onIconClick: handleLinkedInClick },
+    // Column 3 - Decorative icons
+    { id: 'calendar', icon: '/calendar.png', title: formatIconTitle('calendar.png'), onIconClick: () => {} },
+    { id: 'books', icon: '/books.png', title: formatIconTitle('books.png'), onIconClick: () => {} },
+    { id: 'media_disc', icon: '/Media_Disc.png', title: formatIconTitle('Media_Disc.png'), onIconClick: () => {} },
+    { id: 'recycle_bin', icon: '/Recycle_Bin.png', title: formatIconTitle('Recycle_Bin.png'), onIconClick: () => {} },
+    // Column 4 - More decorative icons
+    { id: 'solitare', icon: '/Solitare.png', title: formatIconTitle('Solitare.png'), onIconClick: () => {} },
+    { id: 'settings', icon: '/Settings.png', title: formatIconTitle('Settings.png'), onIconClick: () => {} },
+    { id: 'camera', icon: '/Camera.png', title: formatIconTitle('Camera.png'), onIconClick: () => {} },
+    { id: 'weather', icon: '/Weather.png', title: formatIconTitle('Weather.png'), onIconClick: () => {} },
+    // Column 5 - Final decorative icons
+    { id: 'paint', icon: '/Paint.png', title: formatIconTitle('Paint.png'), onIconClick: () => {} },
+    { id: 'calculator', icon: '/Calculator.png', title: formatIconTitle('Calculator.png'), onIconClick: () => {} },
+    { id: 'phone', icon: '/Phone.png', title: formatIconTitle('Phone.png'), onIconClick: () => {} },
+    { id: 'sound_settings', icon: '/Sound_settings.png', title: formatIconTitle('Sound_settings.png'), onIconClick: () => {} }
+  ]
+
+  // Distribute icons into columns for an irregular Windows 98-style layout
+  // Column 1: 6 icons (Projects, Resume, Internships, Notepad, Contact, Music Player)
+  // Column 2: 2 icons (Github, LinkedIn) + 2 decorative (Calendar, Books)
+  // Column 3: 3 decorative (Media Disc, Recycle Bin, Solitare)
+  // Column 4: 4 decorative (Settings, Camera, Weather, Paint)
+  // Column 5: 4 decorative (Calculator, Phone, Sound Settings)
+  const iconColumns = [
+    allDesktopIcons.slice(0, 6),   // 6 icons
+    allDesktopIcons.slice(6, 10),   // 4 icons
+    allDesktopIcons.slice(10, 13),   // 3 icons
+    allDesktopIcons.slice(13, 17),  // 4 icons
+    allDesktopIcons.slice(17, 20)  // 3 icons
+  ]
+
   // Build windows array for taskbar
   const windows = []
   if (showProjectsPopup) {
@@ -220,53 +314,33 @@ function InfoPage() {
       overflow: 'auto',
       cursor: 'url(/mouse.png), auto'
     }}>
-      <div className="desktop-icons-container" style={{
-        padding: '20px',
-        gap: '40px'
+      <div className="desktop-icons-wrapper" style={{
+        position: 'absolute',
+        left: '20px',
+        top: '20px',
+        display: 'flex',
+        flexDirection: 'row',
+        gap: '30px',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start'
       }}>
-        <div className="desktop-icons" style={{
-          gap: '20px'
-        }}>
-          <WindowsIcon 
-            icon="/projects.png"
-            title="Projects"
-            onIconClick={handleProjectsClick}
-          />
-          <WindowsIcon 
-            icon="/resume.png"
-            title="Resume"
-            onIconClick={handleResumeClick}
-          />
-          <WindowsIcon 
-            icon="/internship.png"
-            title="Internships"
-            onIconClick={handleInternshipClick}
-          />
-          <WindowsIcon 
-            icon="/notepad.png"
-            title="Notepad"
-            onIconClick={handleNotepadClick}
-          />
-          <WindowsIcon 
-            icon="/email.png"
-            title="Contact"
-            onIconClick={handleContactClick}
-          />
-        </div>
-        <div className="desktop-icons" style={{
-          gap: '20px'
-        }}>
-          <WindowsIcon 
-            icon="/github.png"
-            title="Github"
-            onIconClick={handleGithubClick}
-          />
-          <WindowsIcon 
-            icon="/linkedin.png"
-            title="LinkedIn"
-            onIconClick={handleLinkedInClick}
-          />
-        </div>
+        {iconColumns.map((column, colIndex) => (
+          <div key={colIndex} style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            alignItems: 'flex-start'
+          }}>
+            {column.map((iconData) => (
+              <WindowsIcon
+                key={iconData.id}
+                icon={iconData.icon}
+                title={iconData.title}
+                onIconClick={iconData.onIconClick}
+              />
+            ))}
+          </div>
+        ))}
       </div>
 
       <HomeBar 
@@ -311,8 +385,35 @@ function InfoPage() {
           initialPosition={notepad.position}
           isActive={activeWindowId === notepad.id}
           onActivate={handleWindowClick}
+          onExpand={() => handleNotepadExpand(notepad.id)}
+          onContentChange={(newContent) => {
+            setNotepads(prevNotepads => 
+              prevNotepads.map(n => 
+                n.id === notepad.id 
+                  ? { ...n, content: newContent }
+                  : n
+              )
+            )
+            // Also update fullscreen if it's open
+            if (fullscreenNotepad && fullscreenNotepad.id === notepad.id) {
+              setFullscreenNotepad(prev => ({
+                ...prev,
+                content: newContent
+              }))
+            }
+          }}
         />
       ))}
+      {fullscreenNotepad && (
+        <FullscreenNotepad
+          title={fullscreenNotepad.title}
+          content={fullscreenNotepad.content}
+          onClose={handleFullscreenClose}
+          onMinimize={handleFullscreenMinimize}
+          onContentChange={handleFullscreenContentChange}
+          isEditable={fullscreenNotepad.isEditable}
+        />
+      )}
     </div>
   )
 }

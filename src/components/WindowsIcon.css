@@ -3,9 +3,10 @@
   flex-direction: column;
   align-items: center;
   width: 80px;
-  margin: 10px;
+  margin: 0;
   cursor: url('/mouse.png'), pointer;
   user-select: none;
+  flex-shrink: 0;
 }
 
 .windows-icon:hover .icon-image {
@@ -27,7 +28,7 @@
 
 .icon-title {
   font-family: 'Tahoma', 'Geneva', sans-serif;
-  font-size: 12px;
+  font-size: 12px !important;
   color: #ffffff !important;
   text-align: center;
   word-wrap: break-word;

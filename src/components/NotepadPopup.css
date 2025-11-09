@@ -36,6 +36,7 @@
   font-size: 11px;
   color: #ffffff !important;
   font-weight: bold;
+  flex: 1;
 }
 
 .notepad-content {
@@ -50,10 +51,10 @@
   border: none;
   resize: none;
   outline: none;
-  font-family: "Fixedsys Excelsior", "FixedSys", monospace;
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace !important;
   font-size: 12px;
   color: #000000;
-  line-height: 1.4;
+  line-height: 1.6;
   white-space: pre-wrap;
   word-wrap: break-word;
   z-index: 5;
@@ -66,6 +67,8 @@
   white-space: normal;
   cursor: text;
   padding-right: 9px;
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace !important;
+  line-height: 1.6;
 }
 
 .notepad-content::-webkit-scrollbar {
@@ -74,14 +77,16 @@
 
 .notepad-content-display strong {
   font-weight: bold;
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace !important;
 }
 
 .notepad-content-display em {
   font-style: italic;
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace !important;
 }
 
 .notepad-content-display code {
-  font-family: "Fixedsys Excelsior", "FixedSys", monospace;
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace !important;
   background-color: #f0f0f0;
   padding: 2px 4px;
   border-radius: 2px;
@@ -89,15 +94,15 @@
 
 .notepad-content-display ul,
 .notepad-content-display ol {
-  margin: 0;
-  padding-left: 20px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin: 8px 0;
+  padding-left: 30px;
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace !important;
 }
 
 .notepad-content-display li {
-  margin: 2px 0;
-  line-height: 1.3;
+  margin: 4px 0;
+  line-height: 1.5;
+  font-family: "Fixedsys Excelsior", "FixedSys", monospace !important;
 }
 
 .notepad-content-display br {
@@ -110,6 +115,31 @@
   height: auto;
   display: block;
   margin: 8px 0;
+}
+
+.notepad-expand {
+  position: absolute;
+  top: 4px;
+  right: 22px;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: url('/mouse.png'), pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  line-height: 1;
+  pointer-events: auto;
+  color: transparent;
+  margin: 0;
+}
+
+.notepad-expand:hover {
+  background: transparent;
 }
 
 .notepad-close-x {
@@ -126,9 +156,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 15;
+  z-index: 20;
   line-height: 1;
   pointer-events: auto;
+  color: transparent;
 }
 
 .notepad-close-x:active {
